@@ -2,20 +2,419 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+:root{
+  --primary: #1e1e2f;
+  --accent: #4fd1c5;
+  --btns: #ff6b6b;
+  --text: #ffffff;
+  --silver: #c0c0c0;
+  --danger: #fd0f0f;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+html,body{
+  width: 100vw;
+  height: 100vh;
+  overflow-x: hidden;
+  font-family: "Montserrat", sans-serif;
+  background: var(--primary);
 }
+
+a{
+  font-size: 17px;
+  text-decoration: none;
+}
+
+p{
+  color: var(--text);
+  font-size: 17px;
+  font-weight: 400;
+}
+
+.large-text{
+  font-size: 20px;
+}
+
+h2{
+  font-size: 35px;
+  color: var(--text);
+  font-weight: 500;
+  margin-bottom: 40px;
+}
+
+#main{
+  width: 100%;
+  height: max-content;
+}
+
+.hide-container,
+.premium-hide{
+  display: none;
+}
+
+.relative-position{
+  position: relative;
+}
+
+.relative-position-clean{
+  position: relative;
+}
+
+.relative-position::after{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--primary);
+  opacity: 0.4;
+}
+
+.absolute-position{
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.margin-b-20{
+  margin-bottom: 20px;
+}
+
+label{
+  margin-bottom: 5px;
+  font-size: 17px;
+}
+
+.label-center{
+  text-align: center;
+}
+
+.custom-calc{
+  height: calc(100% - 2.5rem);
+}
+
+.rec-calc{
+  height: calc(100vh - 100px);
+}
+
+.btn-active{
+  position: relative;
+  height: max-content;
+  width: max-content;
+}
+
+.btn-active::after{
+  content: '';
+  position: absolute;
+  top: 15px;
+  left: 0;
+  height: 4px;
+  width: 100%;
+  transform: rotate(45deg);
+  background: var(--accent);
+}
+
+/*Header Begins*/
+
+#header{
+  height: 100px;
+  width: 100vw;
+  background: var(--primary);
+}
+
+.header{
+  height: 100%;
+  width: 100%;
+  padding: 0 40px;
+}
+
+.header-top{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-logo-container{
+  height: 45px;
+  width: 60px;
+}
+
+.header-logo{
+  height: 100%;
+  width: 100%;
+}
+
+.header-top-right{
+  height: max-content;
+  width: max-content;
+}
+
+.cta-btn-container{
+  height: max-content;
+  width: max-content;
+  display: flex;
+  align-items: center;
+}
+
+.btn{
+  padding: 10px 25px;
+  background: var(--btns);
+  border: 2px solid var(--btns);
+  color: var(--text);
+  font-size: 17px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.sign-in-btn{
+  background: transparent;
+  margin: 0 20px 0 0;
+  color: var(--btns);
+}
+
+.cta-btn-container.active{
+  display: none;
+}
+
+.active-user{
+  display: none;
+}
+
+.active-user.active{
+  display: block;
+  height: max-content;
+  width: max-content;
+  position: relative;
+}
+
+.active-user-container{
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+}
+
+.active-user i{
+  font-size: 30px;
+  color: var(--text);
+}
+
+.active-user-detail{
+  position: absolute;
+  top: 30px;
+  left: -150px;
+  height: max-content;
+  width: max-content;
+  padding: 10px;
+  border-radius: 5px;
+  background: var(--text);
+  display: none;
+}
+
+.active-user-container:hover .active-user-detail{
+  display: block;
+}
+
+.active-user-detail p{
+  margin: 5px 0;
+}
+
+.header-bottom{
+  height: 50px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-container{
+  height: max-content;
+  width: max-content;
+}
+
+.nav-list{
+  height: max-content;
+  width: max-content;
+  display: flex;
+  align-items: center;
+  list-style: none;
+}
+
+.nav-item{
+  margin: 0 10px;
+}
+
+.nav-link{
+  color: var(--text);
+  transition: 0.3s ease-in-out;
+}
+
+.nav-link:hover{
+  color: var(--btns);
+  text-decoration: underline;
+}
+
+.logout-btn{
+  padding: 5px 25px;
+  width: 100%;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+/*Header Ends*/
+
+/*Footer Begins*/
+
+#footer{
+  height: max-content;
+  width: 100%;
+  padding: 50px 40px;
+}
+
+.footer{
+  height: 100%;
+  width: 100%;
+}
+
+.footer-top{
+  height: max-content;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--accent);
+}
+
+.footer-top-left{
+  height: max-content;
+  width: max-content;
+}
+
+.footer-logo-container{
+  height: 150px;
+  width: 300px;
+}
+
+.footer-logo{
+  height: 100%;
+  width: 100%;
+}
+
+.footer-top-right,
+.footer-navigation{
+  height: max-content;
+  width: max-content;
+  display: flex;
+  align-items: flex-start;
+}
+
+.page-nav,
+.legal-nav{
+  height: max-content;
+  width: max-content;
+  padding: 0 20px;
+  list-style: none;
+}
+
+.page-nav a,
+.legal-nav a{
+  color: var(--text);
+  transition: 0.3s ease-in-out;
+}
+
+.page-nav a:hover,
+.legal-nav a:hover{
+  color: var(--btns);
+  text-decoration: underline;
+}
+
+.subscribe-form-container,
+.subscribe-form{
+  height: max-content;
+  width: max-content;
+}
+
+.subscribe-form{
+  display: flex;
+  flex-direction: column;
+}
+
+.subscribe-form-header{
+  padding: 0 0 20px 0;
+}
+
+.subscribe-form-header h2{
+  font-size: 21px;
+  color: var(--accent);
+}
+
+.subscribe-email{
+  width: 250px;
+  height: 40px;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--text);
+  border-bottom: 2px solid var(--accent);
+  margin-bottom: 20px;
+}
+
+.subscribe-btn{
+  width: 250px;
+  height: 40px;
+  text-align: center;
+  border-radius: 10px;
+  color: var(--text);
+  background: var(--btns);
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+.footer-bottom{
+  height: max-content;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.social-container{
+  height: max-content;
+  width: max-content;
+}
+
+.social-link i{
+  font-size: 25px;
+  color: var(--btns);
+  margin: 0 10px 0 0;
+}
+
+.rights{
+  font-size: 14px;
+  font-weight: 300;
+}
+
+.footer-nav-header{
+  height: max-content;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.footer-nav-header h2{
+  font-size: 21px;
+  color: var(--accent);
+}
+
+/*Footer Ends*/

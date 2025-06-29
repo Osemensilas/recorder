@@ -8,8 +8,13 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        primary: "var(--primary)",
+        accent: "var(--accent)",
+        btns: "var(--btns)",
+        text: "var(--text)",
+        silver: "var(--silver)",
+        danger: "var(--danger)",
+        transparent: "transparent",
       },
     },
   },
