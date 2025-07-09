@@ -71,7 +71,7 @@ const Footer = () => {
                                 <i className="fa fa-linkedin-square"></i>
                             </a>
                         </div>
-                        <p className="rights">All rights reserved © Ossil Tech LTD</p>
+                        <p className="rights">All rights reserved © Iruap Tech Studio LTD</p>
                     </div>
                 </div>
             </footer>

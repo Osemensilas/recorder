@@ -14,10 +14,10 @@ const SignUp = () => {
             `}</style>
         </Head>
         <section className="w-screen h-screen flex">
-            <div className="w-3/5 h-full">
+            <div className="hidden sm:block w-3/5 h-full">
                 <img src="/signup.jpg" alt="" className="w-full h-full" />
             </div>
-            <div className="w-2/5 h-full flex justify-center items-center">
+            <div className="w-full sm:w-2/5 h-full flex justify-center items-center">
                 <form action="/" className="w-4/5 h-max">
                     <header className="mb-2.5">
                         <h2>Sign Up</h2>

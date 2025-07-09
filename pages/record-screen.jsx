@@ -3,21 +3,10 @@ import { useState, useRef, useEffect } from "react";
 import LoginComponent from "@/components/Login";
 import PremiumComponent from "@/components/Premium";
 
-let createFFmpeg, fetchFile;
-let ffmpegModulePromise;
-
-if (typeof window !== "undefined") {
-    ffmpegModulePromise = import('@ffmpeg/ffmpeg').then(ffmpegModule => {
-        const mod = ffmpegModule.default || ffmpegModule;
-        createFFmpeg = mod.createFFmpeg;
-        fetchFile = mod.fetchFile;
-    });
-}
-
 const RecordScreen = () => {
 
     const userId = "user123";
-    const premiumId = "52436";
+    const premiumId = "";
     const [loginFormContainer, setLoginFormContainer] = useState("w-screen h-screen fixed after:absolute after:content-[''] after:h-screen after:w-screen after:bg-black after:opacity-50 after:top-0 after:left-0 top-0 left-0 z-30 hide-container");
     const [premiumContainer, setPremiumContainer] = useState("w-screen h-screen fixed after:absolute after:content-[''] after:h-screen after:w-screen after:bg-black after:opacity-50 after:top-0 after:left-0 top-0 left-0 z-30 premium-hide");
     const [isRecording, setIsRecording] = useState(false);
@@ -36,6 +25,7 @@ const RecordScreen = () => {
     const [stopX, setStopX] = useState(0);  
     const timelineRef = useRef(null); 
     const [dragging, setDragging] = useState(null);
+    const [downloadLink, setDownloadLink] = useState("")
 
     
     const recordedChunksRef = useRef([]);
@@ -113,6 +103,7 @@ const RecordScreen = () => {
                     const blob = new Blob(recordedChunksRef.current, { type: 'video/webm' });
                     const url = URL.createObjectURL(blob);
                     setRecordedVideo(url);
+                    setDownloadLink(url);
                 };
 
                 mediaRecorder.start();
@@ -230,59 +221,11 @@ const RecordScreen = () => {
     }, [dragging, startX, stopX]);
     
 
-    const loadFFmpeg = async () => {
-        // Wait for the dynamic import to finish
-        if (typeof window !== "undefined" && ffmpegModulePromise) {
-        await ffmpegModulePromise;
-        }
-        if (!ffmpegRef.current) {
-        ffmpegRef.current = createFFmpeg({ log: true });
-        }
-        if (ffmpegRef.current && !ffmpegRef.current.isLoaded()) {
-        await ffmpegRef.current.load();
-        }
-    };
-
-
     const handleCut = async () => {
-        if (premiumId === "") {
+        if (premiumId === ""){
             setPremiumContainer("w-screen h-screen fixed after:absolute after:content-[''] after:h-screen after:w-screen after:bg-black after:opacity-50 after:top-0 after:left-0 top-0 left-0 z-30");
-            return;
-        } else {
-            if (!recordedVideo || !duration || !timelineRef.current) return;
+        }else{
 
-            const rect = timelineRef.current.getBoundingClientRect();
-            const startTime = (startX / rect.width) * duration;
-            const stopTime = (stopX / rect.width) * duration;
-            const cutDuration = stopTime - startTime;
-
-            await loadFFmpeg();
-            const ffmpeg = ffmpegRef.current;
-
-            // Fetch the blob data from the blob URL
-            const response = await fetch(recordedVideo);
-            const videoData = new Uint8Array(await response.arrayBuffer());
-            const inputFileName = 'input.webm';
-            const outputFileName = 'output_trimmed.webm';
-
-            ffmpeg.FS('writeFile', inputFileName, videoData);
-
-            await ffmpeg.run(
-                '-i', inputFileName,
-                '-ss', `${startTime}`,
-                '-t', `${cutDuration}`,
-                '-c', 'copy',
-                outputFileName
-            );
-
-            const trimmedData = ffmpeg.FS('readFile', outputFileName);
-            const trimmedBlob = new Blob([trimmedData.buffer], { type: 'video/webm' });
-            const trimmedURL = URL.createObjectURL(trimmedBlob);
-
-            setRecordedVideo(trimmedURL);
-
-            ffmpeg.FS('unlink', inputFileName);
-            ffmpeg.FS('unlink', outputFileName);
         }
     };
 
@@ -300,7 +243,6 @@ const RecordScreen = () => {
 
     const handleForward = () => {
         if (premiumId === ""){
-            setPremiumContainer("w-screen h-screen fixed after:absolute after:content-[''] after:h-screen after:w-screen after:bg-black after:opacity-50 after:top-0 after:left-0 top-0 left-0 z-30");
             return;
         }else{
             if (videoRef.current) {
@@ -356,6 +298,7 @@ const RecordScreen = () => {
                     }}
                     controls={false} 
                     className="h-full w-full"></video>
+                    <a href={downloadLink} download="recording.webm" className="absolute top-[10px] left-[85%] py-2 px-4 rounded bg-btns text-text">Download Video</a>
                 </div>
                 <div id="video-edit-bottom" className="h-1/5 w-full bg-primary">
                     <div id="video-edit-bottom-top" className="h-2/5 w-full flex items-center px-10">

@@ -13,10 +13,10 @@ const ForgetPassword = () => {
             `}</style>
         </Head>
         <section className="w-screen h-screen flex">
-            <div className="w-3/5 h-full">
+            <div className="hidden sm:block w-3/5 h-full">
                 <img src="/password.jpg" alt="" className="w-full h-full" />
             </div>
-            <div className="w-2/5 h-full flex justify-center items-center">
+            <div className="w-full sm:w-2/5 h-full flex justify-center items-center">
                 <form action="/" className="w-4/5 h-max hide-container">
                     <header className="mb-5">
                         <h2>Forget Password</h2>
@@ -39,12 +39,12 @@ const ForgetPassword = () => {
                     <div className="w-full h-max mb-2.5">
                         <p htmlFor="email" className="text-silver w-full mb-4 label-center">Enter 6-digit code sent to your email address</p>
                         <div className="w-full h-max mb-4 flex justify-center">
-                            <input type="text" id="email" className="h-10 w-10 mx-2 border text-silver outline-none border-silver rounded px-2 bg-transparent" />
-                            <input type="text" id="email" className="h-10 w-10 mx-2 border text-silver outline-none border-silver rounded px-2 bg-transparent" />
-                            <input type="text" id="email" className="h-10 w-10 mx-2 border text-silver outline-none border-silver rounded px-2 bg-transparent" />
-                            <input type="text" id="email" className="h-10 w-10 mx-2 border text-silver outline-none border-silver rounded px-2 bg-transparent" />
-                            <input type="text" id="email" className="h-10 w-10 mx-2 border text-silver outline-none border-silver rounded px-2 bg-transparent" />
-                            <input type="text" id="email" className="h-10 w-10 mx-2 border text-silver outline-none border-silver rounded px-2 bg-transparent" />
+                            <input type="text" id="email" className="text-center h-10 w-10 mx-2 border text-silver outline-none border-silver rounded px-2 bg-transparent" />
+                            <input type="text" id="email" className="text-center h-10 w-10 mx-2 border text-silver outline-none border-silver rounded px-2 bg-transparent" />
+                            <input type="text" id="email" className="text-center h-10 w-10 mx-2 border text-silver outline-none border-silver rounded px-2 bg-transparent" />
+                            <input type="text" id="email" className="text-center h-10 w-10 mx-2 border text-silver outline-none border-silver rounded px-2 bg-transparent" />
+                            <input type="text" id="email" className="text-center h-10 w-10 mx-2 border text-silver outline-none border-silver rounded px-2 bg-transparent" />
+                            <input type="text" id="email" className="text-center h-10 w-10 mx-2 border text-silver outline-none border-silver rounded px-2 bg-transparent" />
                             <div className="text-danger"></div>
                         </div>
                     </div>
