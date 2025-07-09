@@ -14,7 +14,7 @@ const RecordScreen = () => {
     const [startBtn, setStartBtn] = useState("absolute top-2/4 left-2/4 -translate-x-2/4 -translate-y-2/4  py-3 px-6 mr-3 bg-accent rounded-full flex items-center justify-center");
     const [stopBtnContainer, setStopBtnContainer] = useState("w-max h-max py-3 px-10 rounded-full items-center justify-center relative  z-50 hidden");
     const [audioIcon, setAudioIcon] = useState("fa fa-microphone text-danger text-2xl");
-    const [recoredSection, setRecorderSection] = useState("w-screen rec-calc relative  px-10");
+    const [recoredSection, setRecorderSection] = useState("w-screen rec-calc relative");
     const [editSection, setEditSection] = useState("relative rec-calc w-screen hidden");
     const [recordedVideo, setRecordedVideo] = useState(null);
     const [useMic, setUseMic] = useState(true);
